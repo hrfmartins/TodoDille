@@ -1,0 +1,7 @@
+pysondb==1.4.0
+fastapi~=0.74.0
+uvicorn~=0.17.5
+mysql-connector-python==8.0.27
+python-dotenv~=0.19.2
+
+pydantic~=1.9.0
