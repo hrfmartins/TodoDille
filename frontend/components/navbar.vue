@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-navbar class="navbar-class" toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand class="navbar-logo" href="#">TodoDille</b-navbar-brand>
+    <b-navbar class="navbar-class" toggleable="lg" type="dark">
+      <b-navbar-brand class="navbar-logo" href="/">TodoDille</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -17,10 +17,11 @@
           <b-nav-item-dropdown class="nav-item-login" right disabled>
             <!-- Using 'button-content' slot -->
             <template #button-content>
-              <em>Log In</em>
+              <font-awesome-icon :icon="['fas', 'lock']"></font-awesome-icon>
+              <em>Account</em>
             </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+            <b-dropdown-item href="#">Login</b-dropdown-item>
+            <b-dropdown-item href="#">Sign Up</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -35,6 +36,10 @@ export default {
 </script>
 
 <style scoped>
+.navbar-class {
+  height: 15vh;
+  background: rgba(0, 87, 175, 0.32);
+}
 
 .navbar-logo {
   font-size: 2rem;
@@ -46,7 +51,6 @@ export default {
 
 .nav-item-login {
   font-size: 1.5rem;
-  background: grey;
   border-radius: 10px;
   padding-left: 10px;
   padding-right: 10px;
