@@ -21,7 +21,7 @@ export default {
 <style scoped>
 .background {
   background-image: url("static/img/background.jpg");
-  background-size: 100% 160%;
+  background-size: 100% 300%;
   background-attachment: fixed;
   background-repeat: no-repeat;
   width: 100%;
