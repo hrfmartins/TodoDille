@@ -1,11 +1,20 @@
 <template>
   <div class="clickable-area" @click="clickArea">
-    <b-row>
+    <b-row v-if="iconName !== '' ">
       <b-col cols="1">
         <font-awesome-icon class="fa-3x" :icon="['fas', iconName]" />
       </b-col>
       <b-col>
-        <h2>{{ item.name }}</h2>
+        <h4 class="m-0"> {{ item.name }}</h4>
+      </b-col>
+    </b-row>
+
+    <b-row v-else>
+      <b-col cols="9">
+        <h4 class="m-0"> {{ item.name }}</h4>
+      </b-col>
+      <b-col>
+        <p>Created on {{ $moment(item.date_created).format('YYYY-MM-D') }}</p>
       </b-col>
     </b-row>
   </div>
@@ -31,7 +40,7 @@ export default {
   },
   methods: {
     clickArea () {
-      console.log('HEY!')
+      console.log(this.iconName)
     }
   }
 }
@@ -39,7 +48,7 @@ export default {
 
 <style scoped>
 .clickable-area {
-  width: 95vw;
+  width: 100%;
   margin: auto;
 }
 

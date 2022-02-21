@@ -61,6 +61,8 @@ export default {
   display: flex;
   padding: 0;
   height: 10vh;
+  background: rgba(255, 255, 255, 0.86);
+  border-radius: 10px;
 }
 
 .list-group-item:hover {
@@ -76,6 +78,6 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 1);
 }
 </style>

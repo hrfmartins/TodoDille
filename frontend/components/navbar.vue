@@ -43,6 +43,7 @@ export default {
 
 .navbar-logo {
   font-size: 2rem;
+  font-family: "Arial Narrow";
 }
 
 .nav-item-page {
