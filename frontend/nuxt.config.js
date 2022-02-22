@@ -24,7 +24,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/repository.js',
-    '~/plugins/fontawesome.js'
+    '~/plugins/fontawesome.js',
+    '~/plugins/filters.js'
 
   ],
 
@@ -50,10 +51,14 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://localhost:8000' // TODO CHANGE TO SUPPORT DEPLOY WITH ENV
+    baseURL: process.env.URL_BACKEND ? process.env.URL_BACKEND : 'https://localhost:8000'// TODO CHANGE TO SUPPORT DEPLOY WITH ENV
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  server: {
+    host: '0.0.0.0'
   }
 }

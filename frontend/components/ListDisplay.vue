@@ -18,7 +18,7 @@
         </h4>
       </b-col>
       <b-col>
-        <p>Created on {{ $moment(item.date_created).format('YYYY-MM-D') }}</p>
+        <p>Created on {{ item.date_created | formatDate }}</p>
       </b-col>
     </b-row>
   </div>

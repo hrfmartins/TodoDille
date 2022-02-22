@@ -11,5 +11,17 @@ export default $axios => ({
     const dto = { list_id: listId, task_id: taskId, complete }
     return await $axios.$put('/tasks/complete',
       dto)
+  },
+
+  async changeTask (task) {
+    return await $axios.$put('/tasks/update', task)
+  },
+
+  async createTask (task) {
+    return await $axios.$post('/tasks/create', task)
+  },
+
+  async getTodayTasks (task) {
+    return await $axios.$get('/tasks/today', task)
   }
 })

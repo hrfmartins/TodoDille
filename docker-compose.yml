@@ -7,8 +7,12 @@ services:
     links:
       - db
     ports:
-      - '5000:5000'
-
+      - '8000:80'
+    environment:
+      - PORT=80
+      - DB=db
+    env_file:
+      - backend/.env
   db:
     image: mariadb:latest
     restart: always
@@ -33,7 +37,7 @@ services:
     links:
       - backend
     ports:
-      - 8081:80
+      - 80:3000
     restart: unless-stopped
 volumes:
   my-db:

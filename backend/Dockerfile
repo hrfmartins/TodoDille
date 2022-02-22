@@ -8,4 +8,5 @@ RUN pip install -r requirements.txt
 
 COPY ./ .
 
-ENTRYPOINT [ "python", "./app.py" ]
+ENV PORT "$PORT"
+CMD uvicorn main:app --host 0.0.0.0 --port $PORT

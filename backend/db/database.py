@@ -49,6 +49,13 @@ class Database:
         self.cursor.nextset()
         self.connection.commit()
 
+    def insert(self, query, values):
+        self.connect()
+        self.cursor.execute(query, values)
+        self.cursor.nextset()
+        self.connection.commit()
+        return self.cursor.lastrowid
+
     def get_result(self, query, variables=None):
         self.connect()
         if variables is None:
