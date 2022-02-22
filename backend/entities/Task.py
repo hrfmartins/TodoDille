@@ -9,3 +9,4 @@ class Task(BaseModel):
     date_created: datetime
     complete: bool
     list_id: int
+    id: int

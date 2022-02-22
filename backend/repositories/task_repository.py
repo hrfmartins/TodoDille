@@ -24,6 +24,11 @@ class TaskRepository:
         values = [task.title, task.description, task.due_date, task_id, task.list_id]
         db.execute(query, values)
 
+    def complete_task(self, task_id: int, list_id: int, state: bool):
+        query = "UPDATE tasks SET complete = %s WHERE list_id = %s AND id = %s;"
+        values = [state, list_id, task_id]
+        db.execute(query, values)
+
     def delete_task(self, task_id: int, list_id):
         query = "DELETE FROM tasks WHERE id = %s AND list_id = %s;"
         values = [task_id, list_id]
