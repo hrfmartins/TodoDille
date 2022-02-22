@@ -1,6 +1,7 @@
 export const state = () => ({
   lists: [],
-  activeList: {}
+  activeList: {},
+  activeListTasks: {}
 })
 
 export const mutations = {
@@ -10,6 +11,18 @@ export const mutations = {
 
   setActiveList (state, list) {
     state.activeList = list
+  },
+
+  setActiveListTasks (state, list) {
+    state.activeListTasks = list
+  },
+
+  setTaskComplete (state, {
+    taskId,
+    complete
+  }) {
+    const task = state.activeListTasks.filter(task => task.id === taskId)[0]
+    task.complete = complete
   }
 }
 
@@ -24,8 +37,23 @@ export const actions = {
     })
   },
 
-  setActiveList ({ state, commit }, list) {
+  async setActiveList ({ state, commit }, list) {
     commit('setActiveList', list)
+    await this.$repositories.repo.getListInfo(list.id).then((response) => {
+      commit('setActiveListTasks', response)
+    })
+  },
+
+  async completeTask ({ state, commit }, {
+    taskId,
+    complete
+  }) {
+    await this.$repositories.repo.completeTask(state.activeList.id, taskId, complete).then(() => {
+      commit('setTaskComplete', {
+        taskId,
+        complete
+      })
+    })
   }
 
 }
@@ -39,5 +67,8 @@ export const getters = {
   },
   getActiveList (state) {
     return state.activeList
+  },
+  getActiveListTasks (state) {
+    return state.activeListTasks
   }
 }

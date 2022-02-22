@@ -5,13 +5,17 @@
         <font-awesome-icon class="fa-3x" :icon="['fas', iconName]" />
       </b-col>
       <b-col>
-        <h4 class="m-0"> {{ item.name }}</h4>
+        <h4 class="m-0">
+          {{ item.name }}
+        </h4>
       </b-col>
     </b-row>
 
     <b-row v-else>
       <b-col cols="9">
-        <h4 class="m-0"> {{ item.name }}</h4>
+        <h4 class="m-0">
+          {{ item.name }}
+        </h4>
       </b-col>
       <b-col>
         <p>Created on {{ $moment(item.date_created).format('YYYY-MM-D') }}</p>
@@ -40,7 +44,8 @@ export default {
   },
   methods: {
     clickArea () {
-      console.log(this.iconName)
+      this.$store.dispatch('setActiveList', this.item)
+      this.$router.push('tasks')
     }
   }
 }

@@ -37,7 +37,7 @@ export default {
 
 <style scoped>
 .navbar-class {
-  height: 15vh;
+  max-height: 15vh;
   background: rgba(0, 87, 175, 0.32);
 }
 
