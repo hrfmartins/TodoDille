@@ -1,44 +1,47 @@
 from fastapi import APIRouter, HTTPException
 from entities.List import TaskList
 from entities.Task import Task
+from entities.UpdateTaskDto import UpdateTaskDto
+from entities.TaskCreate import CreateTask
 from repositories.task_repository import TaskRepository
-
+from typing import List
 
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 
 
-@router.post("/create")
-def add_task(task: Task):
-    TaskRepository().create_task(task)
-    return "OK"
+@router.post("/create", response_model=Task)
+def add_task(task: CreateTask):
+    return TaskRepository().create_task(task)
 
 
-@router.get("/", response_model=list)
-def get_tasks_from_list(task_id: int):
+@router.get("/", response_model=List[Task])
+def get_tasks_from_list(list_id: int):
     try:
-        return TaskRepository().get_tasks_from_list(task_id)
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=e)
-
-
-@router.delete("/delete")
-def delete_task(task_list: int, task_name: int):
-    try:
-        task_list: TaskList = db.getById(task_list)
-        task_list.remove_task(task_name)
-        db.updateById(task_list, task_list)
-
+        return TaskRepository().get_tasks_from_list(list_id)
     except Exception as e:
         raise HTTPException(status_code=400, detail=e)
 
 
 @router.put("/update")
-def update_task(task: Task, task_list: int):
+def delete_task(task: Task):
     try:
-        task_list: TaskList = db.getById(task_list)
-        task_list.updateTask(task)
-        db.updateById(task_list, task_list)
+        return TaskRepository().update_task(task)
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=e)
 
+
+@router.put("/complete")
+def update_task(change: UpdateTaskDto):
+    try:
+        return TaskRepository().complete_task(change.task_id, change.list_id, change.complete)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=e)
+
+
+@router.get("/today", response_model=List[Task])
+def today_tasks():
+    try:
+        return TaskRepository().get_today_tasks()
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=e)
